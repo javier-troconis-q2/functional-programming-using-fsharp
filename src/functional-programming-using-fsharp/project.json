@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0-*",
+  "description": "functional-programming-using-fsharp Console Application",
+  "authors": [ "jtroconis" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "FSharp.Core": "4.0.0.1",
+    "FSharp.Dnx": "1.0.0-*"
+  },
+
+  "commands": {
+    "functional_programming_using_fsharp": "functional_programming_using_fsharp"
+  },
+
+  "frameworks": {
+    "dnx451": { }
+  },
+
+  "compiler": {
+    "name": "F#",
+    "compilerAssembly": "FSharp.Dnx",
+    "compilerType": "FSharp.Dnx.FSharpProjectCompiler"
+  },
+
+  "fsharp": {
+    "files": [
+      "Properties/AssemblyInfo.fs",
+      "Program.fs"
+    ]
+  }
+}
