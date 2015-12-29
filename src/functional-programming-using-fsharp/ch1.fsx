@@ -14,11 +14,11 @@ let rec f =
     | n -> n + f (n - 1)
 
 let f_tail n = 
-    let rec f = 
+    let rec f_tail = 
         function 
         | (0, y) -> y
-        | (x, y) -> f (x - 1, y + 1)
-    f (n, n)
+        | (x, y) -> f_tail (x - 1, y + 1)
+    f_tail (n, n)
 
 //1.5
 let rec fib = 
@@ -33,11 +33,11 @@ let rec sum =
     | (m, n) -> m + n + sum (m, n - 1)
 
 let sum_tail (m, n) = 
-    let rec sum = 
+    let rec sum_tail = 
         function 
         | (r, 0) -> r
-        | (r, n) -> sum (m + n + r, n - 1)
-    sum (m, n)
+        | (r, n) -> sum_tail (m + n + r, n - 1)
+    sum_tail (m, n)
 //1.7
 // (System.Math.PI, fact -1) = float * int
 // fact(fact 4) = int
