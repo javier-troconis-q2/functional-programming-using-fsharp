@@ -1,34 +1,28 @@
 {
   "version": "1.0.0-*",
-  "description": "functional-programming-using-fsharp Console Application",
-  "authors": [ "jtroconis" ],
-  "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
-
-  "dependencies": {
-    "FSharp.Core": "4.0.0.1",
-    "FSharp.Dnx": "1.0.0-*"
+  "buildOptions": {
+    "debugType": "portable",
+    "emitEntryPoint": true,
+    "compilerName": "fsc",
+    "compile": {
+      "includeFiles": [
+		"Properties/AssemblyInfo.fs",
+        "Program.fs"
+      ]
+    }
   },
-
-  "commands": {
-    "functional_programming_using_fsharp": "functional_programming_using_fsharp"
+  "tools": {
+    "dotnet-compile-fsc":"1.0.0-preview2-*"
   },
-
   "frameworks": {
-    "dnx451": { }
-  },
-
-  "compiler": {
-    "name": "F#",
-    "compilerAssembly": "FSharp.Dnx",
-    "compilerType": "FSharp.Dnx.FSharpProjectCompiler"
-  },
-
-  "fsharp": {
-    "files": [
-      "Properties/AssemblyInfo.fs",
-      "Program.fs"
-    ]
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.1"
+        },
+        "Microsoft.FSharp.Core.netcore": "1.0.0-alpha-160629"
+      }
+    }
   }
 }
