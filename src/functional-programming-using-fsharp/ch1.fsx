@@ -46,7 +46,6 @@ let sum_tail (m, n) =
 //1.8
 //f 3 = 4
 //g 3 = 9
-
 let rec alt_sum = 
     function 
     | [] -> 0
@@ -61,7 +60,16 @@ let rec sum_prod =
     function 
     | [] -> (0, 1)
     | h :: t -> 
-        let (s, p) = sum_prod t
-        (h + s, h * p)
+        let (h', t') = sum_prod t
+        (h + h', h * t')
 
+let rec fold_left (f : 'a -> 'b -> 'a) (a : 'a) (l : 'b list) : 'a = 
+    match l with
+    | [] -> a
+    | h :: t -> fold_left f (f a h) t
+
+let rec fold_right (f : 'a -> 'b -> 'a) (l : 'b list) (a : 'a) : 'a = 
+    match l with
+    | [] -> a
+    | h :: t -> f (fold_right f t a) h
 
