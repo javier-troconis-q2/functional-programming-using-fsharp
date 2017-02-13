@@ -63,13 +63,12 @@ let rec sum_prod =
         let (h', t') = sum_prod t
         (h + h', h * t')
 
-let rec fold_left (f : 'a -> 'b -> 'a) (a : 'a) (l : 'b list) : 'a = 
+let rec foldl (f : 'a -> 'b -> 'a) (s : 'a) (l : 'b list) : 'a = 
     match l with
-    | [] -> a
-    | h :: t -> fold_left f (f a h) t
+    | [] -> s
+    | h :: t -> foldl f (f s h) t
 
-let rec fold_right (f : 'a -> 'b -> 'a) (l : 'b list) (a : 'a) : 'a = 
+let rec foldr (f : 'a -> 'b -> 'b) (s : 'b) (l : 'a list) : 'b = 
     match l with
-    | [] -> a
-    | h :: t -> f (fold_right f t a) h
-
+    | [] -> s
+    | h :: t -> f h (foldr f s t)
