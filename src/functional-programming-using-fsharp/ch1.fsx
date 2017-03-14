@@ -22,7 +22,8 @@ let f_tail n =
 //1.5
 let rec fib = 
     function 
-    | n when n = 0 || n = 1 -> n
+    | 0 -> 0
+    | 1 -> 1
     | n -> fib (n - 1) + fib (n - 2)
 
 //1.6
@@ -72,3 +73,22 @@ let rec foldr (f : 'a -> 'b -> 'b) (s : 'b) (l : 'a list) : 'b =
     match l with
     | [] -> s
     | h :: t -> f h (foldr f s t)
+
+let rec gcd (x, y) = 
+    match x % y with
+    | 0 -> y
+    | z -> gcd (y, z)
+
+let rec reverse = 
+    function 
+    | [] -> []
+    | h :: t -> 
+        let t' = reverse t
+        t' @ [h]
+
+let reverse_tail l = 
+    let rec reverse_tail' l a =
+        match l with 
+        | [] -> a
+        | h :: t -> reverse_tail' t (h::a)
+    reverse_tail' l []
