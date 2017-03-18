@@ -26,14 +26,40 @@ let rec gcd =
     | (x, 0) -> x
     | (x, y) -> gcd (y, x % y)
 
-
-type 'c tree = 
+type tree<'c> = 
     | Empty
     | Node of 'c tree * 'c * 'c tree
 
-let rec create_list t =
-    match t with
-    | Empty -> [] 
-    | Node (a,b,c) -> 
-        create_list a @ [b] @ create_list c
+type k<'a, 'b> = 
+    | A of 'b
+    | B of 'a
 
+type list'<'t> = 
+    | Head of 't
+    | Tail of 't list'
+
+let rec create_list t = 
+    match t with
+    | Empty -> []
+    | Node(a, b, c) -> create_list a @ [ b ] @ create_list c
+
+let make_list n = 
+    let rec make_list' n a = 
+        match n with
+        | 0 -> a
+        | _ -> make_list' (n - 1) (n :: a)
+    make_list' n []
+
+let reverse_tail l = 
+    let rec reverse_tail' l a = 
+        match l with
+        | [] -> a
+        | h :: t -> reverse_tail' t (h :: a)
+    reverse_tail' l []
+
+let reverse_tail1 l = 
+    let rec reverse_tail1' = 
+        function 
+        | ([], a) -> a
+        | (h :: t, a) -> reverse_tail1' (t, h :: a)
+    reverse_tail1' (l, [])
