@@ -107,3 +107,43 @@ let compute_bounds2 cmp list =
     match List.head sorted, List.last sorted with
     | None, _ | _, None -> None
     | Some x, Some y -> Some(x, y)
+
+let rec alt_sum = 
+    function 
+    | [] -> 0
+    | [ x ] -> x
+    | h1 :: h2 :: t -> h1 - h2 + alt_sum t
+
+let rec alt_sum1 = 
+    function 
+    | [] -> 0
+    | h1 :: t1 -> 
+        match t1 with
+        | [] -> h1
+        | h2 :: t2 -> h1 - h2 + alt_sum1 t2
+
+let rec dec_to_bin = 
+    function 
+    | 0 -> "0"
+    | 1 -> "1"
+    | x -> dec_to_bin (x / 2) + string (x % 2)
+
+let rec sum_prod = 
+    function 
+    | [] -> (0, 1)
+    | h :: t -> 
+        let a, b = sum_prod t
+        (h + a, h * b)
+
+let rec append a b = 
+    match a with
+    | [] -> b
+    | h :: t -> h :: (append t b)
+
+let rec drop_value l v = 
+    match l with
+    | [] -> []
+    | h :: t -> 
+        let t' = drop_value t v
+        if h = v then t'
+        else h :: t'

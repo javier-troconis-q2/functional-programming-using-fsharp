@@ -44,22 +44,22 @@ let rec create_list t =
     | Node(a, b, c) -> create_list a @ [ b ] @ create_list c
 
 let make_list n = 
-    let rec make_list' n a = 
+    let rec f n a = 
         match n with
         | 0 -> a
-        | _ -> make_list' (n - 1) (n :: a)
-    make_list' n []
+        | _ -> f (n - 1) (n :: a)
+    f n []
 
 let reverse_tail l = 
-    let rec reverse_tail' l a = 
+    let rec f l a = 
         match l with
         | [] -> a
-        | h :: t -> reverse_tail' t (h :: a)
-    reverse_tail' l []
+        | h :: t -> f t (h :: a)
+    f l []
 
 let reverse_tail1 l = 
-    let rec reverse_tail1' = 
+    let rec f = 
         function 
         | ([], a) -> a
-        | (h :: t, a) -> reverse_tail1' (t, h :: a)
-    reverse_tail1' (l, [])
+        | (h :: t, a) -> f (t, h :: a)
+    f (l, [])
