@@ -147,3 +147,13 @@ let rec drop_value l v =
         let t' = drop_value t v
         if h = v then t'
         else h :: t'
+
+let rec foldl f l s = 
+    match l with
+    | [] -> s
+    | h :: t -> foldl f t (f s h)
+
+let rec foldr (f : 'a -> 'b -> 'b) (acc : 'b) (list : 'a list) = 
+    match list with
+    | [] -> acc
+    | h :: t -> f h (foldr f acc t)
